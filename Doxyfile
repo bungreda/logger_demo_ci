@@ -1,0 +1,48 @@
+# Doxyfile for the Asynchronous C++ Logger
+# You can override these settings with doxygen -s Doxyfile <option>=<value>
+
+#---------------------------------------------------------------------------
+# Project related configuration options
+#---------------------------------------------------------------------------
+DOXYFILE_ENCODING      = UTF-8
+PROJECT_NAME           = "Asynchronous C++ Logger"
+PROJECT_BRIEF          = "A high-performance, thread-safe logger library for embedded Linux systems."
+PROJECT_LOGO           =
+OUTPUT_DIRECTORY       = docs
+CREATE_SUBDIRS         = YES
+OUTPUT_LANGUAGE        = English
+GENERATE_HTML          = YES
+GENERATE_LATEX         = YES
+
+#---------------------------------------------------------------------------
+# Input related configuration options
+#---------------------------------------------------------------------------
+INPUT                  = src/
+RECURSIVE              = YES
+EXCLUDE_PATTERNS       =
+FILE_PATTERNS          = *.h *.cpp
+
+#---------------------------------------------------------------------------
+# C++ related configuration options
+#---------------------------------------------------------------------------
+OPTIMIZE_OUTPUT_FOR_C  = NO
+WARN_IF_UNDOCUMENTED   = YES
+WARN_NO_PARAMDOC       = YES
+EXTRACT_ALL            = NO
+EXTRACT_STATIC         = YES
+EXTRACT_ANON_NSPACES   = YES
+CASE_SENSE_NAMES       = YES
+HIDE_UNDOC_CLASSES     = NO
+HIDE_UNDOC_MEMBERS     = NO
+ENABLE_PREPROCESSING   = YES
+MACRO_EXPANSION        = YES
+EXPAND_ONLY_PREDEF     = YES
+PREDEFINED             =
+
+#---------------------------------------------------------------------------
+# Output related configuration options
+#---------------------------------------------------------------------------
+HAVE_DOT               = YES
+CLASS_DIAGRAMS         = YES
+DOT_GRAPH_MAX_NODES    = 100
+UML_LOOK               = YES
