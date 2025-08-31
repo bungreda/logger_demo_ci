@@ -56,18 +56,25 @@ void LoggerManager::workerThreadFunc() {
             return !m_messageQueue.empty() || m_stopThread;
         });
 
-        if (m_stopThread && m_messageQueue.empty()) {
-            break;
+        // Loop to process all pending messages before potentially exiting
+        while (!m_messageQueue.empty()) {
+            LogMessage msg = m_messageQueue.front();
+            m_messageQueue.pop();
+
+            // Unlock while processing to allow other threads to add messages
+            lock.unlock();
+
+            // Write the message to all configured outputs
+            for (const auto& output : m_outputs) {
+                output->write(msg.message);
+            }
+
+            // Re-acquire lock to check queue for more messages and to wait again
+            lock.lock();
         }
-
-        LogMessage msg = m_messageQueue.front();
-        m_messageQueue.pop();
-
-        lock.unlock(); // Release lock to allow other threads to add messages
-
-        // Write the message to all configured outputs
-        for (const auto& output : m_outputs) {
-            output->write(msg.message);
+        
+        if (m_stopThread) {
+            break;
         }
     }
 }
